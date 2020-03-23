@@ -158,6 +158,71 @@ String.prototype.isMaxByte = function(maxByte) {
 }
 
 /**
+ * 바이트 길이 계산
+ * */
+String.prototype.getByteLength = function(){
+	if (this == null || this.length == 0) {
+		return 0;
+	}
+	var size = 0;
+
+	for ( var i = 0; i < this.length; i++) {
+		size += this.charByteSize(this.charAt(i));
+	}
+
+	return size;
+}
+
+/**
+ * 일정 바이트만큼 자르기
+ * @param len	: 자를 바이트 크기
+ * */
+String.prototype.cutByteLength = function(len){
+	if (this == null || this.length == 0) {
+		return 0;
+	}
+	var size = 0;
+	var rIndex = this.length;
+
+	for ( var i = 0; i < this.length; i++) {
+		size += this.charByteSize(this.charAt(i));
+		if( size == len ) {
+			rIndex = i + 1;
+			break;
+		} else if( size > len ) {
+			rIndex = i;
+			break;
+		}
+	}
+
+	return this.substring(0, rIndex);
+}
+
+/**
+ * 해당 문자 바이트 크기 가져오기
+ * */
+String.prototype.charByteSize = function(){
+	if (this == null || this.length == 0) {
+		return 0;
+	}
+
+	var charCode = this.charCodeAt(0);
+
+	if (charCode <= 0x00007F) {
+		return 1;
+	} else if (charCode <= 0x0007FF) {
+		return 2;
+	} else if (charCode <= 0x00FFFF) {
+		return 3;
+	} else {
+		return 4;
+	}
+}
+
+
+
+
+/**
  * 문자열이 영문인경우 대문자로 치환한다.
  * 
  * @return 대문자로 치환된 문자열
@@ -400,6 +465,19 @@ String.prototype.isDate = function() {
 				.getDate()) == d);
 	}
 	return result;
+}
+
+/**
+ * 날짜 형태 변경(형태,특수문자)
+ * @param sp : 날짜 구분 특수문자
+ * @return 문자열 날짜
+ * */
+String.prototype.dateFormat = function(sp){
+	var year = Number(this.substring(0, 4));
+	var month = Number(this.substring(4, 6));
+	var day = Number(this.substring(6, 8));
+	
+	return year + sp + month + sp + day;
 }
 
 /**

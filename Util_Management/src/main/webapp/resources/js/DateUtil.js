@@ -74,4 +74,39 @@ var DateUtil = function(date){
 			}
 		}
 	}
+	
+	/**
+	 * string형 날짜를 Date 형으로 변경
+	 * @param str : 문자열 날짜 (yyyyMMdd, yyyy-MM-dd, yyyy.MM.dd 등...)
+	 * */
+	this.stringToDate = function(str){
+		if(str.length == 8){
+			var year = str.substring(0,4);
+			var month = str.substring(4,6);
+			var day = str.substring(6);
+			return new Date(year + "-" + month + "-" + day);
+		}else if(str.length == 10){
+			return new Date(str);
+		}else{
+			return false;
+		}
+	}
+	
+	/**
+	 * Date형을 string형으로 변경
+	 * @param date : date형 날짜
+	 * */
+	this.dateToString = function(date, sp){
+		var year = date.getFullYear();
+		var month = date.getMonth() + 1;
+		month = month >= 10 ? month : "0" + month;
+		var day = date.getDate();
+		day = day >= 10 ? day : "0" + day;
+		if(sp != undefined && sp != null){
+			return year + sp + month + sp + day;
+		}else{
+			return year + month + day;
+		}
+	}
+	
 }
