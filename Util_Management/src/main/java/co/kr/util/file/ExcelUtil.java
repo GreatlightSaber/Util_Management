@@ -54,6 +54,7 @@ public Map<String, Object> uploadExcelDb(MultipartFile multipartFile) throws IOE
 				HSSFSheet sheet1 = null;
 				XSSFSheet sheet2 = null;
 				
+				// 시트 가져오기
 				if (xtnsVal.equals("xls")) {
 					sheet1 = workbook1.getSheet("Sheet1");
 					rows = sheet1.getPhysicalNumberOfRows();
