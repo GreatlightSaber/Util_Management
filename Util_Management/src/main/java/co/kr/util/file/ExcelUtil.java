@@ -56,6 +56,7 @@ public Map<String, Object> uploadExcelDb(MultipartFile multipartFile) throws IOE
 				
 				// 시트 가져오기
 				if (xtnsVal.equals("xls")) {
+					// 원하는 시트명 입력
 					sheet1 = workbook1.getSheet("Sheet1");
 					rows = sheet1.getPhysicalNumberOfRows();
 				} else {
@@ -67,6 +68,8 @@ public Map<String, Object> uploadExcelDb(MultipartFile multipartFile) throws IOE
 				XSSFRow row2 = null;
 				XSSFCell cell2 = null;
 				HSSFCell cell1 = null;
+				// row - 해당 열
+				// cell - row열에 해당되는  n번째 행
 				for (int j = 1; j < rows + 1; j++) {
 					
 					String cuid = "";
@@ -86,7 +89,7 @@ public Map<String, Object> uploadExcelDb(MultipartFile multipartFile) throws IOE
 						}
 					}
 					
-					// 첫번 째 행 - 회원 번호
+					// 첫번 째 행
 					if (xtnsVal.equals("xls")) {
 						cell1 = row1.getCell(0);
 						if(null != cell1) {
