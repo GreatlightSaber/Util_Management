@@ -320,7 +320,7 @@ public class RestTemplateUtil
 				
 			}else{
 			
-				jsonInfo.addProperty(HttpResBodyKey.Common.RTN_CODE, response.getStatusCode());
+				jsonInfo.addProperty(HttpResBodyKey.Common.RTN_CODE, response.getStatusCode().toString());
 				jsonInfo.addProperty(HttpResBodyKey.Common.RTN_DATA, response.getStatusCodeValue());
 				
 				
