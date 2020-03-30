@@ -25,4 +25,33 @@ $(function(){
     $.MonthPicker.i18n.months = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
     $.MonthPicker.i18n.year = ["년"];
     $.MonthPicker.i18n.backTo = ["년으로 돌아가기"];
+    
+    
+    
+    // document ready 시 이벤트 설정
+    $(document).ready(function(){
+		console.log("document - ready -> " + new Date());
+		
+	});
+
+    // window load 시 이벤트 설정
+	$(window).on("load",function(){
+		console.log("window - load -> " + new Date());
+		
+	});
 });
+
+function fnLoading( __flag ){
+    if( __flag ){
+        $.LoadingOverlay("show",{
+            //image : "/resources/img/loading.svg",
+            imageAnimation : "1500ms rotate_right",
+            imageColor : "#EEEEEE",
+            background  : "rgba(0, 0, 0, 0)",
+            size : 25
+        });
+    }else{
+        $.LoadingOverlay("hide");
+    }
+}
+
